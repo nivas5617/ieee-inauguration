@@ -63,7 +63,7 @@ animation:flicker 0.2s infinite alternate;
 100%{transform:scale(1.2)}
 }
 
-/* Text reveal */
+/* Text Reveal */
 
 #textReveal{
 margin-top:60px;
@@ -73,7 +73,7 @@ transition:2s;
 line-height:1.6;
 }
 
-/* Logo section */
+/* Logo Section */
 
 #logoSection{
 margin-top:80px;
@@ -81,8 +81,8 @@ display:none;
 }
 
 .logoContainer{
-position:relative;
 display:inline-block;
+padding:20px;
 }
 
 /* Logo */
@@ -91,42 +91,29 @@ display:inline-block;
 width:260px;
 opacity:0;
 transform:scale(0.4);
-filter:drop-shadow(0 0 25px gold);
+border-radius:10px;
+box-shadow:0 0 40px rgba(255,215,0,0.6);
+animation:logoReveal 2.5s ease forwards;
 }
 
-/* Golden sweep */
+/* Professional reveal animation */
 
-.sweep{
-position:absolute;
-top:0;
-left:-100%;
-width:100%;
-height:100%;
-background:linear-gradient(120deg,transparent,rgba(255,215,0,0.9),transparent);
-animation:sweepReveal 2s forwards;
-}
-
-@keyframes sweepReveal{
-0%{left:-100%}
-100%{left:100%}
-}
-
-/* Logo animation */
-
-@keyframes logoPop{
+@keyframes logoReveal{
 
 0%{
 opacity:0;
 transform:scale(0.4);
+filter:blur(10px);
 }
 
 60%{
-transform:scale(1.15);
+transform:scale(1.1);
 }
 
 100%{
 opacity:1;
 transform:scale(1);
+filter:blur(0);
 }
 
 }
@@ -181,8 +168,6 @@ KARE IEEE EMBS Student Chapter
 
 <img id="logo" src="logo.jpeg">
 
-<div class="sweep"></div>
-
 </div>
 
 </div>
@@ -191,7 +176,7 @@ KARE IEEE EMBS Student Chapter
 
 <script>
 
-/* Lamp lighting */
+/* Lamp Lighting */
 
 let count=0
 
@@ -215,21 +200,17 @@ setTimeout(showLogo,2500)
 
 }
 
-/* Logo reveal */
+/* Show Logo */
 
 function showLogo(){
 
-let logo=document.getElementById("logo")
-
 document.getElementById("logoSection").style.display="block"
-
-logo.style.animation="logoPop 2.5s ease forwards"
 
 startConfetti()
 
 }
 
-/* Confetti */
+/* Confetti Animation */
 
 const canvas=document.getElementById("confetti")
 
