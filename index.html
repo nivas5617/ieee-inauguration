@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -18,31 +19,35 @@ text-align:center;
 overflow-x:hidden;
 }
 
+/* Title */
+
 h1{
 margin-top:40px;
-font-size:40px;
+font-size:42px;
 letter-spacing:2px;
 }
 
-/* Lamps */
+/* Lamp Section */
 
 .lamps{
 margin-top:60px;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:30px;
+gap:40px;
 }
 
 .lamp{
-font-size:70px;
+font-size:80px;
 cursor:pointer;
 transition:0.3s;
 }
 
 .lamp:hover{
-transform:scale(1.2);
+transform:scale(1.15);
 }
+
+/* Flame */
 
 .flame{
 width:15px;
@@ -58,13 +63,14 @@ animation:flicker 0.2s infinite alternate;
 100%{transform:scale(1.2)}
 }
 
-/* Text */
+/* Text reveal */
 
-.reveal{
-margin-top:40px;
+#textReveal{
+margin-top:60px;
 font-size:28px;
 opacity:0;
-transition:1.5s;
+transition:2s;
+line-height:1.6;
 }
 
 /* Logo section */
@@ -74,24 +80,53 @@ margin-top:80px;
 display:none;
 }
 
-.shield{
-width:250px;
-opacity:0;
-transform:scale(0);
+.logoContainer{
+position:relative;
+display:inline-block;
 }
 
-/* Shield assembling animation */
+/* Logo */
 
-@keyframes assemble{
+#logo{
+width:260px;
+opacity:0;
+transform:scale(0.4);
+filter:drop-shadow(0 0 25px gold);
+}
+
+/* Golden sweep */
+
+.sweep{
+position:absolute;
+top:0;
+left:-100%;
+width:100%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(255,215,0,0.9),transparent);
+animation:sweepReveal 2s forwards;
+}
+
+@keyframes sweepReveal{
+0%{left:-100%}
+100%{left:100%}
+}
+
+/* Logo animation */
+
+@keyframes logoPop{
 
 0%{
 opacity:0;
-transform:scale(0) rotate(-180deg);
+transform:scale(0.4);
+}
+
+60%{
+transform:scale(1.15);
 }
 
 100%{
 opacity:1;
-transform:scale(1) rotate(0);
+transform:scale(1);
 }
 
 }
@@ -113,35 +148,42 @@ pointer-events:none;
 
 <h1>Digital Inauguration Ceremony</h1>
 
+<!-- Lamps -->
+
 <div class="lamps">
 
-<div onclick="lightLamp(this)" class="lamp">🪔<div></div></div>
-
-<div onclick="lightLamp(this)" class="lamp">🪔<div></div></div>
-
-<div onclick="lightLamp(this)" class="lamp">🪔<div></div></div>
-
-<div onclick="lightLamp(this)" class="lamp">🪔<div></div></div>
-
-<div onclick="lightLamp(this)" class="lamp">🪔<div></div></div>
-
-<div onclick="lightLamp(this)" class="lamp">🪔<div></div></div>
+<div class="lamp" onclick="lightLamp(this)">🪔</div>
+<div class="lamp" onclick="lightLamp(this)">🪔</div>
+<div class="lamp" onclick="lightLamp(this)">🪔</div>
+<div class="lamp" onclick="lightLamp(this)">🪔</div>
+<div class="lamp" onclick="lightLamp(this)">🪔</div>
+<div class="lamp" onclick="lightLamp(this)">🪔</div>
 
 </div>
 
-<div class="reveal" id="textReveal">
+<!-- Text -->
 
-Kalasalingam Academy of Research and Education  
+<div id="textReveal">
+
+Kalasalingam Academy of Research and Education
 <br><br>
-IEEE Student Branch  
+IEEE Student Branch
 <br><br>
 KARE IEEE EMBS Student Chapter
 
 </div>
 
+<!-- Logo -->
+
 <div id="logoSection">
 
-<img id="logo" class="shield" src="logo.jpeg">
+<div class="logoContainer">
+
+<img id="logo" src="logo.jpeg">
+
+<div class="sweep"></div>
+
+</div>
 
 </div>
 
@@ -167,13 +209,13 @@ if(count==6){
 
 document.getElementById("textReveal").style.opacity=1
 
-setTimeout(showLogo,2000)
+setTimeout(showLogo,2500)
 
 }
 
 }
 
-/* Logo assemble */
+/* Logo reveal */
 
 function showLogo(){
 
@@ -181,7 +223,7 @@ let logo=document.getElementById("logo")
 
 document.getElementById("logoSection").style.display="block"
 
-logo.style.animation="assemble 3s forwards"
+logo.style.animation="logoPop 2.5s ease forwards"
 
 startConfetti()
 
@@ -200,7 +242,7 @@ let pieces=[]
 
 function startConfetti(){
 
-for(let i=0;i<150;i++){
+for(let i=0;i<160;i++){
 
 pieces.push({
 
