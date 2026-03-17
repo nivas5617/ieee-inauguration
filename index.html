@@ -24,15 +24,15 @@ overflow-x:hidden;
 /* HEADER */
 
 .header{
-padding:30px 10px 10px;
+padding:40px 10px 20px;
 }
 
 /* BIG LOGO */
-.collegeLogo{
-width:700px;          /* MUCH bigger */
-max-width:98%;        /* stays responsive */
-height:auto;
 
+.collegeLogo{
+width:700px;
+max-width:98%;
+height:auto;
 filter:drop-shadow(0 0 30px rgba(255,255,255,0.3));
 animation:fadeDown 2s ease;
 }
@@ -97,7 +97,7 @@ transition:2s;
 line-height:1.8;
 }
 
-/* EMBS LOGO */
+/* LOGO ANIMATION SECTION */
 
 #logoSection{
 margin-top:80px;
@@ -108,16 +108,32 @@ display:none;
 width:340px;
 max-width:90%;
 opacity:0;
-transform:scale(0.4);
+transform:translateY(150px) scale(0.5);
 border-radius:10px;
 box-shadow:0 0 60px rgba(255,215,0,0.8);
-animation:logoReveal 2.5s ease forwards;
 }
 
-@keyframes logoReveal{
-0%{opacity:0; transform:scale(0.4); filter:blur(10px);}
-60%{transform:scale(1.1);}
-100%{opacity:1; transform:scale(1); filter:blur(0);}
+/* NEW SMOOTH RISE ANIMATION */
+
+@keyframes riseLogo{
+
+0%{
+opacity:0;
+transform:translateY(150px) scale(0.5);
+filter:blur(10px);
+}
+
+60%{
+opacity:1;
+transform:translateY(-20px) scale(1.1);
+}
+
+100%{
+opacity:1;
+transform:translateY(0) scale(1);
+filter:blur(0);
+}
+
 }
 
 /* Confetti */
@@ -135,7 +151,7 @@ pointer-events:none;
 
 <body>
 
-<!-- HEADER LOGO -->
+<!-- HEADER -->
 <div class="header">
 <img src="kalasalingam logo.png" class="collegeLogo">
 <h1>Digital Inauguration Ceremony</h1>
@@ -162,7 +178,7 @@ IEEE Student Branch
 KARE IEEE EMBS Student Chapter
 </div>
 
-<!-- FINAL LOGO -->
+<!-- LOGO -->
 
 <div id="logoSection">
 <img id="logo" src="logo.jpeg">
@@ -185,15 +201,27 @@ lamp.innerHTML="🪔<div class='flame'></div>"
 count++
 
 if(count==6){
+
 document.getElementById("textReveal").style.opacity=1
-setTimeout(showLogo,2500)
+
+setTimeout(showLogo,2000)
+
 }
 
 }
+
+/* NEW SMOOTH LOGO REVEAL */
 
 function showLogo(){
+
+let logo=document.getElementById("logo")
+
 document.getElementById("logoSection").style.display="block"
+
+logo.style.animation="riseLogo 2.5s ease forwards"
+
 startConfetti()
+
 }
 
 /* Confetti */
@@ -209,15 +237,18 @@ let pieces=[]
 function startConfetti(){
 
 for(let i=0;i<160;i++){
+
 pieces.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 size:Math.random()*6,
 speed:Math.random()*3
 })
+
 }
 
 animate()
+
 }
 
 function animate(){
