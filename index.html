@@ -8,11 +8,14 @@
 
 <title>IEEE EMBS Digital Inauguration</title>
 
+<!-- Professional Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
 
 body{
 margin:0;
-font-family:Segoe UI;
+font-family:'Poppins', sans-serif;
 background:radial-gradient(circle,#0b1e3f,#020b1f);
 color:white;
 text-align:center;
@@ -22,12 +25,27 @@ overflow-x:hidden;
 /* Title */
 
 h1{
-margin-top:40px;
-font-size:42px;
+margin-top:30px;
+font-size:44px;
+font-family:'Playfair Display', serif;
 letter-spacing:2px;
 }
 
-/* Lamp Section */
+/* College Logo */
+
+.collegeLogo{
+margin-top:30px;
+width:260px;
+filter:drop-shadow(0 0 15px rgba(255,255,255,0.2));
+animation:fadeDown 2s ease;
+}
+
+@keyframes fadeDown{
+0%{opacity:0; transform:translateY(-30px);}
+100%{opacity:1;}
+}
+
+/* Lamps */
 
 .lamps{
 margin-top:60px;
@@ -63,14 +81,15 @@ animation:flicker 0.2s infinite alternate;
 100%{transform:scale(1.2)}
 }
 
-/* Text Reveal */
+/* Text */
 
 #textReveal{
 margin-top:60px;
-font-size:28px;
+font-size:26px;
 opacity:0;
 transition:2s;
-line-height:1.6;
+line-height:1.8;
+font-weight:400;
 }
 
 /* Logo Section */
@@ -85,18 +104,16 @@ display:inline-block;
 padding:20px;
 }
 
-/* Logo */
+/* EMBS Logo */
 
 #logo{
-width:260px;
+width:240px;
 opacity:0;
 transform:scale(0.4);
 border-radius:10px;
 box-shadow:0 0 40px rgba(255,215,0,0.6);
 animation:logoReveal 2.5s ease forwards;
 }
-
-/* Professional reveal animation */
 
 @keyframes logoReveal{
 
@@ -135,6 +152,9 @@ pointer-events:none;
 
 <h1>Digital Inauguration Ceremony</h1>
 
+<!-- College Logo -->
+<img src="kalasalingam logo.png" class="collegeLogo">
+
 <!-- Lamps -->
 
 <div class="lamps">
@@ -152,15 +172,13 @@ pointer-events:none;
 
 <div id="textReveal">
 
-Kalasalingam Academy of Research and Education
-<br><br>
-IEEE Student Branch
+IEEE Student Branch  
 <br><br>
 KARE IEEE EMBS Student Chapter
 
 </div>
 
-<!-- Logo -->
+<!-- EMBS Logo -->
 
 <div id="logoSection">
 
@@ -175,8 +193,6 @@ KARE IEEE EMBS Student Chapter
 <canvas id="confetti"></canvas>
 
 <script>
-
-/* Lamp Lighting */
 
 let count=0
 
@@ -200,8 +216,6 @@ setTimeout(showLogo,2500)
 
 }
 
-/* Show Logo */
-
 function showLogo(){
 
 document.getElementById("logoSection").style.display="block"
@@ -210,10 +224,9 @@ startConfetti()
 
 }
 
-/* Confetti Animation */
+/* Confetti */
 
 const canvas=document.getElementById("confetti")
-
 const ctx=canvas.getContext("2d")
 
 canvas.width=window.innerWidth
@@ -226,12 +239,10 @@ function startConfetti(){
 for(let i=0;i<160;i++){
 
 pieces.push({
-
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 size:Math.random()*6,
 speed:Math.random()*3
-
 })
 
 }
@@ -247,7 +258,6 @@ ctx.clearRect(0,0,canvas.width,canvas.height)
 pieces.forEach(p=>{
 
 ctx.fillStyle="gold"
-
 ctx.fillRect(p.x,p.y,p.size,p.size)
 
 p.y+=p.speed
