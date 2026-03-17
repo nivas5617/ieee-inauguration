@@ -8,7 +8,6 @@
 
 <title>IEEE EMBS Digital Inauguration</title>
 
-<!-- Professional Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -22,28 +21,35 @@ text-align:center;
 overflow-x:hidden;
 }
 
-/* Title */
+/* HEADER */
 
-h1{
-margin-top:30px;
-font-size:44px;
-font-family:'Playfair Display', serif;
-letter-spacing:2px;
+.header{
+padding:30px 10px 10px;
 }
 
-/* College Logo */
+/* BIG LOGO */
 
 .collegeLogo{
-margin-top:30px;
-width:360px;           /* Increased size */
-max-width:90%;
-filter:drop-shadow(0 0 15px rgba(255,255,255,0.2));
+width:520px;            /* MUCH BIGGER */
+max-width:95%;
+display:block;
+margin:auto;
+filter:drop-shadow(0 0 25px rgba(255,255,255,0.25));
 animation:fadeDown 2s ease;
 }
 
 @keyframes fadeDown{
-0%{opacity:0; transform:translateY(-30px);}
+0%{opacity:0; transform:translateY(-40px);}
 100%{opacity:1;}
+}
+
+/* Title */
+
+h1{
+margin-top:20px;
+font-size:40px;
+font-family:'Playfair Display', serif;
+letter-spacing:2px;
 }
 
 /* Lamps */
@@ -90,51 +96,29 @@ font-size:26px;
 opacity:0;
 transition:2s;
 line-height:1.8;
-font-weight:400;
 }
 
-/* Logo Section */
+/* EMBS LOGO */
 
 #logoSection{
 margin-top:80px;
 display:none;
 }
 
-.logoContainer{
-display:inline-block;
-padding:20px;
-}
-
-/* EMBS Logo */
-
 #logo{
-width:320px;           /* Increased size */
+width:340px;
 max-width:90%;
 opacity:0;
 transform:scale(0.4);
 border-radius:10px;
-box-shadow:0 0 50px rgba(255,215,0,0.7);
+box-shadow:0 0 60px rgba(255,215,0,0.8);
 animation:logoReveal 2.5s ease forwards;
 }
 
 @keyframes logoReveal{
-
-0%{
-opacity:0;
-transform:scale(0.4);
-filter:blur(10px);
-}
-
-60%{
-transform:scale(1.1);
-}
-
-100%{
-opacity:1;
-transform:scale(1);
-filter:blur(0);
-}
-
+0%{opacity:0; transform:scale(0.4); filter:blur(10px);}
+60%{transform:scale(1.1);}
+100%{opacity:1; transform:scale(1); filter:blur(0);}
 }
 
 /* Confetti */
@@ -152,12 +136,13 @@ pointer-events:none;
 
 <body>
 
-<h1>Digital Inauguration Ceremony</h1>
-
-<!-- College Logo -->
+<!-- HEADER LOGO -->
+<div class="header">
 <img src="kalasalingam logo.png" class="collegeLogo">
+<h1>Digital Inauguration Ceremony</h1>
+</div>
 
-<!-- Lamps -->
+<!-- LAMPS -->
 
 <div class="lamps">
 
@@ -170,26 +155,18 @@ pointer-events:none;
 
 </div>
 
-<!-- Text -->
+<!-- TEXT -->
 
 <div id="textReveal">
-
 IEEE Student Branch  
 <br><br>
 KARE IEEE EMBS Student Chapter
-
 </div>
 
-<!-- EMBS Logo -->
+<!-- FINAL LOGO -->
 
 <div id="logoSection">
-
-<div class="logoContainer">
-
 <img id="logo" src="logo.jpeg">
-
-</div>
-
 </div>
 
 <canvas id="confetti"></canvas>
@@ -209,21 +186,15 @@ lamp.innerHTML="🪔<div class='flame'></div>"
 count++
 
 if(count==6){
-
 document.getElementById("textReveal").style.opacity=1
-
 setTimeout(showLogo,2500)
-
 }
 
 }
 
 function showLogo(){
-
 document.getElementById("logoSection").style.display="block"
-
 startConfetti()
-
 }
 
 /* Confetti */
@@ -239,18 +210,15 @@ let pieces=[]
 function startConfetti(){
 
 for(let i=0;i<160;i++){
-
 pieces.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 size:Math.random()*6,
 speed:Math.random()*3
 })
-
 }
 
 animate()
-
 }
 
 function animate(){
@@ -258,14 +226,10 @@ function animate(){
 ctx.clearRect(0,0,canvas.width,canvas.height)
 
 pieces.forEach(p=>{
-
 ctx.fillStyle="gold"
 ctx.fillRect(p.x,p.y,p.size,p.size)
-
 p.y+=p.speed
-
 if(p.y>canvas.height)p.y=0
-
 })
 
 requestAnimationFrame(animate)
